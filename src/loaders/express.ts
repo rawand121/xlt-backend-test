@@ -36,14 +36,14 @@ const startServer = async (app: any) => {
   } else {
     app.use(
       cors({
-        origin: 'someurl',
+        origin: 'https://iraqmillionaire.netlify.app',
       }),
     );
     // this options is for preflight only, just to make sure the server is ready and it has enought permission to ask the data.
     app.options(
       '*',
       cors({
-        origin: 'someurl',
+        origin: 'https://iraqmillionaire.netlify.app',
       }),
     );
   }
