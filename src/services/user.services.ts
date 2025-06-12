@@ -99,18 +99,25 @@ export const sendOtpService = async (phone: string, isLogin: string | null) => {
       );
     }
   }
-  const code = generateCode();
-
-  // Store in Redis under a unique key
-  const redisKey = `verify:${phone}`;
 
   try {
-    await client.set(redisKey, code, { EX: 300 }); // Expires in 5 minutes
-
-    await clientOtp.sendSMS({
+    const send = await clientOtp.sendSMS({
       phoneNumber: `964${modifiedPhone}`,
       smsType: 'verification',
     });
+
+    if (!send || !send.verificationCode) {
+      throw new AppError(
+        'Failed to send OTP',
+        httpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+
+    const code = send.verificationCode;
+
+    // Store in Redis under a unique key
+    const redisKey = `verify:${phone}`;
+    await client.set(redisKey, code, { EX: 300 }); // Expires in 5 minutes
 
     return { success: true };
   } catch (error) {

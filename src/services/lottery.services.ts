@@ -63,6 +63,8 @@ export const findLotteriesService = async () => {
     .eq('is_deleted', false);
 
   if (error || !data) {
+    console.log({ error });
+
     logger.error('Lotteries are not exist');
     throw new AppError('Lotteries are Not found', httpStatus.BAD_REQUEST);
   }
@@ -186,6 +188,8 @@ export const retrieveNotFinishedLotteriesService = async () => {
     .gt('deadline', currentTime);
 
   if (error || !data.length) {
+    console.log({ error });
+
     logger.error('Lotteries are not exist', error);
     throw new AppError('Lotteries are Not found', httpStatus.BAD_REQUEST);
   }
