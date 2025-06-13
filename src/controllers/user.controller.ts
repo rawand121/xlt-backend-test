@@ -28,14 +28,14 @@ export const createUser = catchAsync(async (req: Request, res: Response) => {
   res.cookie('xltUserAccessToken', accessToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production', // use HTTPS in production
-    sameSite: 'lax',
+    sameSite: 'none',
     maxAge: 15 * 60 * 1000, // 15 minutes
   });
 
   res.cookie('xltUserRefreshToken', refreshToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
+    sameSite: 'none',
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   });
 
@@ -108,14 +108,14 @@ export const verifyCode = catchAsync(async (req: Request, res: Response) => {
     res.cookie('xltUserAccessToken', accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production', // use HTTPS in production
-      sameSite: 'lax',
+      sameSite: 'none',
       maxAge: 15 * 60 * 1000, // 15 minutes
     });
 
     res.cookie('xltUserRefreshToken', refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: 'none',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 

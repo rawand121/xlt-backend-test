@@ -36,26 +36,22 @@ const startServer = async (app: any) => {
   } else {
     app.use(
       cors({
-        origin: [
-          'https://iraqmillionaire.com',
-          'https://iraqmillionaire.netlify.app',
-        ],
+        origin: true, // Allow all origins temporarily for debugging
         credentials: true,
-        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+        exposedHeaders: ['Set-Cookie'],
       }),
     );
     // this options is for preflight only, just to make sure the server is ready and it has enought permission to ask the data.
     app.options(
       '*',
       cors({
-        origin: [
-          'https://iraqmillionaire.com',
-          'https://iraqmillionaire.netlify.app',
-        ],
+        origin: true, // Allow all origins temporarily for debugging
         credentials: true,
-        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+        exposedHeaders: ['Set-Cookie'],
       }),
     );
   }

@@ -134,14 +134,14 @@ export const handleSessionForUser = catchAsync(
     res.cookie('xltUserAccessToken', newAccessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: 'none',
       maxAge: 15 * 60 * 1000, // 15 minutes
     });
 
     res.cookie('xltUserRefreshToken', newRefreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: 'none',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
@@ -188,13 +188,13 @@ export const logoutUser = catchAsync(async (req: Request, res: Response) => {
   // Clear cookies (set same options as when they were set)
   res.clearCookie('xltUserAccessToken', {
     httpOnly: true,
-    sameSite: 'lax',
+    sameSite: 'none',
     secure: process.env.NODE_ENV === 'production',
   });
 
   res.clearCookie('xltUserRefreshToken', {
     httpOnly: true,
-    sameSite: 'lax',
+    sameSite: 'none',
     secure: process.env.NODE_ENV === 'production',
   });
 
@@ -208,13 +208,13 @@ export const logoutAdmin = catchAsync(async (req: Request, res: Response) => {
   // Clear cookies (set same options as when they were set)
   res.clearCookie('xltAccessToken', {
     httpOnly: true,
-    sameSite: 'lax',
+    sameSite: 'none',
     secure: process.env.NODE_ENV === 'production',
   });
 
   res.clearCookie('xltRefreshToken', {
     httpOnly: true,
-    sameSite: 'lax',
+    sameSite: 'none',
     secure: process.env.NODE_ENV === 'production',
   });
 
