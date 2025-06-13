@@ -88,14 +88,14 @@ export const handleSession = catchAsync(async (req: Request, res: Response) => {
   res.cookie('xltAccessToken', newAccessToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
+    sameSite: 'none',
     maxAge: 15 * 60 * 1000, // 15 minutes
   });
 
   res.cookie('xltRefreshToken', newRefreshToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
+    sameSite: 'none',
   });
 
   res.status(httpStatus.OK).json({
